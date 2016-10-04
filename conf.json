@@ -1,0 +1,8 @@
+{
+  "classifier_paths":
+  {
+    "qda":"files/qda",
+    "knn":"files/knn",
+    "svm":"files/svm"
+  }
+}
