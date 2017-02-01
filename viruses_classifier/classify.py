@@ -28,8 +28,8 @@ import os
 from sklearn.externals import joblib
 
 import constants
+from viruses_classifier.libs import sequence_processing
 
-from libs import sequence_processing
 
 def classify(seq, nuc_acid, scaller, classifier):
     """
@@ -46,9 +46,9 @@ def classify(seq, nuc_acid, scaller, classifier):
     nuc_frequencies_ = {'nuc_frequencies__'+key : value for key, value in
                        nuc_frequencies.iteritems()}
     relative_nuc_frequencies_one_strand_ = {'relative_nuc_frequencies_one_strand__'+key : value for key, value in
-                                           sequence_processing.relativeNucFrequencies(nuc_frequencies, 1).iteritems()}
+                                            sequence_processing.relativeNucFrequencies(nuc_frequencies, 1).iteritems()}
     relative_trinuc_freqs_one_strand_ = {'relative_trinuc_freqs_one_strand__'+key : value for key, value in
-                                        sequence_processing.thirdOrderBias(seq, 1).iteritems()}
+                                         sequence_processing.thirdOrderBias(seq, 1).iteritems()}
     freqs = nuc_frequencies_
     freqs.update(relative_nuc_frequencies_one_strand_)
     freqs.update(relative_trinuc_freqs_one_strand_)
