@@ -1,8 +1,9 @@
 {
   "classifier_paths":
   {
-    "qda":"files/qda",
-    "knn":"files/knn",
-    "svm":"files/svm"
-  }
+    "qda":"files/qda.pkl",
+    "knn":"files/knn.pkl",
+    "svm":"files/svm.pkl"
+  },
+  "scaler_path":"files/scaler.pkl"
 }
