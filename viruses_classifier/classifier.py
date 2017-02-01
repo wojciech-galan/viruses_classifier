@@ -7,7 +7,7 @@ import os
 from sklearn.externals import joblib
 
 import constants
-from libs import sequence_processing # TODO z commonFunctions pozmieniać
+from libs import sequence_processing
 
 def classify(seq, nuc_acid, scaller, classifier, probas=False):
     """
@@ -21,19 +21,20 @@ def classify(seq, nuc_acid, scaller, classifier, probas=False):
     """
     acid_code = constants.ACID_TO_NUMBER[nuc_acid]
     length = len(seq)
-    nuc_frequencies = commonFunctions.nucFrequencies(seq, 2)
+    nuc_frequencies = sequence_processing.nucFrequencies(seq, 2)
     nuc_frequencies_ = {'nuc_frequencies__'+key : value for key, value in
                        nuc_frequencies.iteritems()}
     relative_nuc_frequencies_one_strand_ = {'relative_nuc_frequencies_one_strand__'+key : value for key, value in
-                                           commonFunctions.relativeNucFrequencies(nuc_frequencies, 1).iteritems()}
+                                           sequence_processing.relativeNucFrequencies(nuc_frequencies, 1).iteritems()}
     relative_trinuc_freqs_one_strand_ = {'relative_trinuc_freqs_one_strand__'+key : value for key, value in
-                                        commonFunctions.thirdOrderBias(seq, 1).iteritems()}
+                                        sequence_processing.thirdOrderBias(seq, 1).iteritems()}
     freqs = nuc_frequencies_
     freqs.update(relative_nuc_frequencies_one_strand_)
     freqs.update(relative_trinuc_freqs_one_strand_)
     vals = [acid_code, length]
     vals.extend([freqs[k] for k in sorted(freqs)])
+    print vals
     vals = scaller.transform(vals)
     if probas:
-        return classifier.predict_probas
-    return classifier.predict
+        return classifier.predict_probas() # TODO arguments
+    return classifier.predict()
