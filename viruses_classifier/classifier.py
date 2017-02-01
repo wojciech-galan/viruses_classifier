@@ -6,7 +6,7 @@ import os
 
 from sklearn.externals import joblib
 
-import constants #TODO sprawdzić, czy to to samo
+import constants
 from libs import sequence_processing # TODO z commonFunctions pozmieniać
 
 def classify(seq, nuc_acid, scaller, classifier, probas=False):
