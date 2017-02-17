@@ -36,5 +36,5 @@ def classify(seq, nuc_acid, scaller, classifier, probas=False):
     print vals
     vals = scaller.transform(vals)
     if probas:
-        return classifier.predict_probas() # TODO arguments
-    return classifier.predict()
+        return classifier.predict_probas(vals)
+    return classifier.predict(vals)
