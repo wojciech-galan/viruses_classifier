@@ -5,5 +5,7 @@
     "knn":"files/knn.pkl",
     "svm":"files/svm.pkl"
   },
-  "scaler_path":"files/scaler.pkl"
+  "scaler_path":"files/scaler.pkl",
+  "features_file":"features.json",
+  "all_features_file":"features.dump"
 }

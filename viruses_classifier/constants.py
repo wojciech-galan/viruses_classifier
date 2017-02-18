@@ -6,9 +6,15 @@
 
 import os
 import json
+import cPickle as pickle
+from libs.get_feature_indices import get_feature_indices
 
 DIR_PATH = os.path.dirname(os.path.realpath(__file__))
 CONFIG = json.load(open(os.path.join(DIR_PATH, 'conf.json')))
 ACID_TO_NUMBER = {'dna':1.0, 'rna':0.0}
-feature_indices = json.load(open(os.path.join(DIR_PATH, 'files', 'features.json'))) #TODO zrobić rzeczywiste indeksy, a nie
-# to, co teraz np.array([features.index(feat) for feat in feats])
+feature_indices = {
+    'qda':get_feature_indices(pickle.load(open(os.path.join(DIR_PATH, 'files', CONFIG['all_features_file']))),
+                              json.load(open(os.path.join(DIR_PATH, 'files', CONFIG['features_file'])))['qda']),
+    'knn':get_feature_indices(pickle.load(open(os.path.join(DIR_PATH, 'files', CONFIG['all_features_file']))),
+                              json.load(open(os.path.join(DIR_PATH, 'files', CONFIG['features_file'])))['knn'])
+}

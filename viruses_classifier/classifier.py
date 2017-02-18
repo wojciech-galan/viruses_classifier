@@ -1,21 +1,19 @@
 #! /usr/bin/python
 # -*- coding: utf-8 -*-
 
-import argparse
-import os
-
-from sklearn.externals import joblib
+import numpy as np
 
 import constants
 from libs import sequence_processing
 
-def classify(seq, nuc_acid, scaller, classifier, probas=False):
+def classify(seq, nuc_acid, scaller, classifier, feature_indices, probas=False):
     """
     Classify viral sequence
     :param seq: - sequence in upperrcase. Can contain degenerate nucleotides in IUPAC notation
     :param nuc_acid: either 'dna' or 'rna'
     :param scaller: trained scaller
     :param classifier: trained classifier
+    :param feature_indices: indices of selected features
     :param probas: when True function returns class probabilities instead of class
     :return: class code (for example 0 or 1) or class probabilities
     """
@@ -34,8 +32,8 @@ def classify(seq, nuc_acid, scaller, classifier, probas=False):
     vals = [acid_code, length]
     vals.extend([freqs[k] for k in sorted(freqs)])
     print type (vals), vals # TODO remove
-    vals = scaller.transform(vals).reshape(1, -1)
+    vals = scaller.transform(np.array(vals).reshape(1, -1))[:,feature_indices]
     print type(vals), vals # TODO remove
     if probas:
-        return classifier.predict_proba(vals)
-    return classifier.predict(vals)
+        return classifier.predict_proba(vals)[0]
+    return classifier.predict(vals)[0]

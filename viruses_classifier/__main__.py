@@ -27,8 +27,10 @@ def main(args=sys.argv[1:]):
                                   constants.CONFIG['classifier_paths'][parsed_args.classifier.lower()])
     scaler = joblib.load(scaler_path)
     classifier = joblib.load(classifier_path)
-    print classify(parsed_args.sequence, parsed_args.nucleic_acid.lower(), scaler, classifier, parsed_args.probas)
+    print classify(parsed_args.sequence, parsed_args.nucleic_acid.lower(), scaler, classifier,
+                   constants.feature_indices[parsed_args.classifier.lower()], parsed_args.probas)
 
 
 if __name__ == '__main__':
     main()
+    # TODO poprawa konfiguracji,żeby działała pod windowsem
