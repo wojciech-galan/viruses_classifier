@@ -33,8 +33,9 @@ def classify(seq, nuc_acid, scaller, classifier, probas=False):
     freqs.update(relative_trinuc_freqs_one_strand_)
     vals = [acid_code, length]
     vals.extend([freqs[k] for k in sorted(freqs)])
-    print vals
-    vals = scaller.transform(vals)
+    print type (vals), vals # TODO remove
+    vals = scaller.transform(vals).reshape(1, -1)
+    print type(vals), vals # TODO remove
     if probas:
         return classifier.predict_proba(vals)
     return classifier.predict(vals)
