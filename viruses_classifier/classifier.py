@@ -29,10 +29,10 @@ def classify(seq, nuc_acid, scaller, classifier, feature_indices, probas=False):
     freqs = nuc_frequencies_
     freqs.update(relative_nuc_frequencies_one_strand_)
     freqs.update(relative_trinuc_freqs_one_strand_)
-    vals = [acid_code, length]
+    vals = [length, acid_code]
     vals.extend([freqs[k] for k in sorted(freqs)])
-    print type (vals), vals # TODO remove
-    vals = scaller.transform(np.array(vals).reshape(1, -1))[:,feature_indices]
+    print type (vals), np.array(vals).reshape(1, -1)[:, feature_indices] # TODO remove
+    vals = scaller.transform(np.array(vals).reshape(1, -1))[:, feature_indices]
     print type(vals), vals # TODO remove
     if probas:
         return classifier.predict_proba(vals)[0]
