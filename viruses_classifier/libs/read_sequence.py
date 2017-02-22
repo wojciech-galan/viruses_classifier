@@ -21,3 +21,16 @@ def read_raw(path):
     """
     return ''.join(open(path).read().split()).upper()
 
+
+def read_fasta(path):
+    """
+    Reads file cotaining FASTA-formatted sequence
+    :param path: path to the file
+    :return: raw sequence string
+    """
+    seqs = {}
+    text = open(path).read().strip()
+    if text.count('>') != 1 or text[0] != '>':
+        raise ReadSequenceException()
+    seq = text.split('\n',1)[1]
+    return ''.join(seq.split()).upper()
