@@ -8,6 +8,7 @@ from sklearn.externals import joblib
 
 import constants
 from classifier import classify
+from libs import read_sequence
 
 
 def main(args=sys.argv[1:]):
@@ -22,12 +23,13 @@ def main(args=sys.argv[1:]):
         raise ValueError("Classifier should be SVM, kNN or QDA")
     if not (parsed_args.nucleic_acid.lower() == 'dna' or parsed_args.nucleic_acid.lower() == 'rna'):
         raise ValueError("Nucleic acid tye should be either DNA or RNA")
+    sequence = read_sequence.read_raw(parsed_args.sequence)
     scaler_path = os.path.join(constants.DIR_PATH, constants.CONFIG['scaler_path'])
     classifier_path = os.path.join(constants.DIR_PATH,
                                   constants.CONFIG['classifier_paths'][parsed_args.classifier.lower()])
     scaler = joblib.load(scaler_path)
     classifier = joblib.load(classifier_path)
-    print classify(parsed_args.sequence, parsed_args.nucleic_acid.lower(), scaler, classifier,
+    print classify(sequence, parsed_args.nucleic_acid.lower(), scaler, classifier,
                    constants.feature_indices[parsed_args.classifier.lower()], parsed_args.probas)
 
 
