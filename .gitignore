@@ -95,3 +95,4 @@ ENV/
 
 # created by me
 /notebooks
+/test_data
