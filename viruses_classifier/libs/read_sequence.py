@@ -1,8 +1,6 @@
 #! /usr/bin/python
 # -*- coding: utf-8 -*-
 
-import re
-
 """Routines for reading nucleotide sequences in different formats"""
 
 
