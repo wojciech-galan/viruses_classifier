@@ -40,7 +40,7 @@ def seq_to_features(seq, nuc_acid):
     return vals
 
 
-def classify(sequence_features, scaller, classifier, feature_indices, probas=False):
+def classify(sequence_features, scaller, classifier, feature_indices=None, probas=False):
     """
     Classify viral sequence
     :param sequence_features: (list of numbers) - features of the sequence to be classified
@@ -50,9 +50,12 @@ def classify(sequence_features, scaller, classifier, feature_indices, probas=Fal
     :param probas: when True function returns class probabilities instead of class
     :return: class code (for example 0 or 1) or class probabilities
     """
-    print type (sequence_features), np.array(sequence_features).reshape(1, -1)[:, feature_indices] # TODO remove
-    vals = scaller.transform(np.array(sequence_features).reshape(1, -1))[:, feature_indices]
-    print type(vals), vals # TODO remove
+    if feature_indices is not None:
+        print type (sequence_features), np.array(sequence_features).reshape(1, -1)[:, feature_indices] # TODO remove
+        vals = scaller.transform(np.array(sequence_features).reshape(1, -1))[:, feature_indices]
+    else:
+        # no feature selection
+        vals = scaller.transform(np.array(sequence_features).reshape(1, -1))
     if probas:
         clf_val = classifier.predict_proba(vals)[0]
         return probas_to_dict(clf_val, constants.NUM_TO_CLASS)
