@@ -19,7 +19,7 @@ viruses_classifier requires:
 User installation
 ~~~~~~~~~~~~~~~~~
 
-If you already have a working installation of numpy,
+If you already have a working installation of numpy and scipy,
 the easiest way to install pbil is using ``pip`` ::
 
     pip install -U git+https://github.com/wojciech-galan/viruses_classifier.git
@@ -36,7 +36,9 @@ You can check the latest sources with the command::
 Usage
 -----
 
-#TODO
+for example:
+
+    viruses_classifier raw_or_FASTA-formatted_sequence_file dna svm
 
 
 Citation
