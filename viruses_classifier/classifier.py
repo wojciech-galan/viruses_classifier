@@ -51,7 +51,6 @@ def classify(sequence_features, scaller, classifier, feature_indices=None, proba
     :return: class code (for example 0 or 1) or class probabilities
     """
     if feature_indices is not None:
-        print type (sequence_features), np.array(sequence_features).reshape(1, -1)[:, feature_indices] # TODO remove
         vals = scaller.transform(np.array(sequence_features).reshape(1, -1))[:, feature_indices]
     else:
         # no feature selection
