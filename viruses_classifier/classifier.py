@@ -15,16 +15,13 @@ def probas_to_dict(probas, translation_dict):
     """
     return {translation_dict[i]:probas[i] for i in range(len(probas))}
 
-def classify(seq, nuc_acid, scaller, classifier, feature_indices, probas=False):
+
+def seq_to_features(seq, nuc_acid):
     """
-    Classify viral sequence
-    :param seq: - sequence in upperrcase. Can contain degenerate nucleotides in IUPAC notation
-    :param nuc_acid: either 'dna' or 'rna'
-    :param scaller: trained scaller
-    :param classifier: trained classifier
-    :param feature_indices: indices of selected features
-    :param probas: when True function returns class probabilities instead of class
-    :return: class code (for example 0 or 1) or class probabilities
+    Transforms sequence to its features
+    :param seq: nucleotide sequence
+    :param nuc_acid: either dna or rna
+    :return: list of sequence features(numbers)
     """
     acid_code = constants.ACID_TO_NUMBER[nuc_acid]
     length = len(seq)
@@ -40,8 +37,21 @@ def classify(seq, nuc_acid, scaller, classifier, feature_indices, probas=False):
     freqs.update(relative_trinuc_freqs_one_strand_)
     vals = [length, acid_code]
     vals.extend([freqs[k] for k in sorted(freqs)])
-    print type (vals), np.array(vals).reshape(1, -1)[:, feature_indices] # TODO remove
-    vals = scaller.transform(np.array(vals).reshape(1, -1))[:, feature_indices]
+    return vals
+
+
+def classify(sequence_features, scaller, classifier, feature_indices, probas=False):
+    """
+    Classify viral sequence
+    :param sequence_features: (list of numbers) - features of the sequence to be classified
+    :param scaller: trained scaller
+    :param classifier: trained classifier
+    :param feature_indices: indices of selected features
+    :param probas: when True function returns class probabilities instead of class
+    :return: class code (for example 0 or 1) or class probabilities
+    """
+    print type (sequence_features), np.array(sequence_features).reshape(1, -1)[:, feature_indices] # TODO remove
+    vals = scaller.transform(np.array(sequence_features).reshape(1, -1))[:, feature_indices]
     print type(vals), vals # TODO remove
     if probas:
         clf_val = classifier.predict_proba(vals)[0]

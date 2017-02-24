@@ -7,7 +7,7 @@ import argparse
 from sklearn.externals import joblib
 
 import constants
-from classifier import classify
+from classifier import classify, seq_to_features
 from libs import read_sequence
 
 
@@ -29,7 +29,8 @@ def main(args=sys.argv[1:]):
                                   constants.CONFIG['classifier_paths'][parsed_args.classifier.lower()])
     scaler = joblib.load(scaler_path)
     classifier = joblib.load(classifier_path)
-    print classify(sequence, parsed_args.nucleic_acid.lower(), scaler, classifier,
+    seq_features = seq_to_features(sequence, parsed_args.nucleic_acid.lower())
+    print classify(seq_features, scaler, classifier,
                    constants.feature_indices[parsed_args.classifier.lower()], parsed_args.probas)
 
 
