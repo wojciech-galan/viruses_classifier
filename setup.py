@@ -13,8 +13,9 @@ setup(
     install_requires=[
         'sklearn',
         'numpy',
+        'scipy'
     ],
-    packages=find_packages(),
+    packages=['viruses_classifier'],
     classifiers=[
         'Operating System :: OS Independent',
         'Programming Language :: Python',
