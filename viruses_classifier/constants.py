@@ -19,3 +19,6 @@ feature_indices = {
     'knn':_get_feature_indices(pickle.load(open(os.path.join(DIR_PATH, 'files', CONFIG['all_features_file']))),
                               json.load(open(os.path.join(DIR_PATH, 'files', CONFIG['features_file'])))['knn'])
 }
+classifier_paths = {classifier_name:os.path.join(DIR_PATH, 'files', CONFIG['classifier_files'][classifier_name]) for
+classifier_name in ('qda', 'knn', 'svm')}
+scaler_path = os.path.join(DIR_PATH, 'files', CONFIG['scaler_file'])

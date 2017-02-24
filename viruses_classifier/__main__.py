@@ -24,11 +24,8 @@ def main(args=sys.argv[1:]):
     if not (parsed_args.nucleic_acid.lower() == 'dna' or parsed_args.nucleic_acid.lower() == 'rna'):
         raise ValueError("Nucleic acid tye should be either DNA or RNA")
     sequence = read_sequence.read_raw(parsed_args.sequence)
-    scaler_path = os.path.join(constants.DIR_PATH, constants.CONFIG['scaler_path'])
-    classifier_path = os.path.join(constants.DIR_PATH,
-                                  constants.CONFIG['classifier_paths'][parsed_args.classifier.lower()])
-    scaler = joblib.load(scaler_path)
-    classifier = joblib.load(classifier_path)
+    scaler = joblib.load(constants.scaler_path)
+    classifier = joblib.load(constants.classifier_paths[parsed_args.classifier.lower()])
     seq_features = seq_to_features(sequence, parsed_args.nucleic_acid.lower())
     print classify(seq_features, scaler, classifier,
                    constants.feature_indices[parsed_args.classifier.lower()], parsed_args.probas)

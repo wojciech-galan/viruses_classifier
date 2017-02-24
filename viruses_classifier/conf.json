@@ -1,11 +1,11 @@
 {
-  "classifier_paths":
+  "classifier_files":
   {
-    "qda":"files/qda.pkl",
-    "knn":"files/knn.pkl",
-    "svm":"files/svm.pkl"
+    "qda":"qda.pkl",
+    "knn":"knn.pkl",
+    "svm":"svm.pkl"
   },
-  "scaler_path":"files/scaler.pkl",
+  "scaler_file":"scaler.pkl",
   "features_file":"features.json",
   "all_features_file":"features.dump"
 }
