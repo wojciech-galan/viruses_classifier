@@ -15,7 +15,7 @@ setup(
         'numpy',
         'scipy'
     ],
-    packages=['viruses_classifier'],
+    packages=find_packages(),
     classifiers=[
         'Operating System :: OS Independent',
         'Programming Language :: Python',
