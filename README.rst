@@ -20,7 +20,7 @@ User installation
 ~~~~~~~~~~~~~~~~~
 
 If you already have a working installation of numpy and scipy,
-the easiest way to install pbil is using ``pip`` ::
+the easiest way to install viruses_classifier is using ``pip`` ::
 
     pip install -U git+https://github.com/wojciech-galan/viruses_classifier.git
 
