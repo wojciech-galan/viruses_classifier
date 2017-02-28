@@ -38,7 +38,7 @@ Usage
 
 for example:
 
-    viruses_classifier raw_or_FASTA-formatted_sequence_file dna svm
+    viruses_classifier raw_or_FASTA-formatted_sequence_file dna svc
 
 
 Citation
