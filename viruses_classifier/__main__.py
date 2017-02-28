@@ -27,12 +27,8 @@ def main(args=sys.argv[1:]):
     scaler = joblib.load(constants.scaler_path)
     classifier = joblib.load(constants.classifier_paths[parsed_args.classifier.lower()])
     seq_features = seq_to_features(sequence, parsed_args.nucleic_acid.lower())
-    if parsed_args.classifier.lower() in ('knn', 'qda'):
-        print classify(seq_features, scaler, classifier,
+    print classify(seq_features, scaler, classifier,
                    constants.feature_indices[parsed_args.classifier.lower()], parsed_args.probas)
-    else:
-        # svc - no feature selection
-        print classify(seq_features, scaler, classifier, probas=parsed_args.probas)
 
 
 if __name__ == '__main__':

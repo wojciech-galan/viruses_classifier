@@ -3,7 +3,7 @@
   {
     "qda":"qda.pkl",
     "knn":"knn.pkl",
-    "svm":"svm.pkl"
+    "svc":"svc.pkl"
   },
   "scaler_file":"scaler.pkl",
   "features_file":"features.json",
