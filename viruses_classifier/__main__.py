@@ -15,12 +15,12 @@ def main(args=sys.argv[1:]):
     parser = argparse.ArgumentParser(description='') #todo dodać opis
     parser.add_argument('sequence', type=str, help='sequence in plaintekst')
     parser.add_argument('nucleic_acid', type=str, help='nucleic acid: either DNA or RNA')
-    parser.add_argument('classifier', type=str, help='classifier: SVM, kNN or QDA')
+    parser.add_argument('classifier', type=str, help='classifier: SVC, kNN or QDA')
     parser.add_argument('--probas', '-p', dest='probas', action='store_true')
     parsed_args = parser.parse_args(args)
-    if not (parsed_args.classifier.lower() == 'svm' or parsed_args.classifier.lower() == 'knn' or
+    if not (parsed_args.classifier.lower() == 'svc' or parsed_args.classifier.lower() == 'knn' or
                     parsed_args.classifier.lower() == 'qda'):
-        raise ValueError("Classifier should be SVM, kNN or QDA")
+        raise ValueError("Classifier should be SVC, kNN or QDA")
     if not (parsed_args.nucleic_acid.lower() == 'dna' or parsed_args.nucleic_acid.lower() == 'rna'):
         raise ValueError("Nucleic acid tye should be either DNA or RNA")
     sequence = read_sequence.read_raw(parsed_args.sequence)
@@ -31,7 +31,7 @@ def main(args=sys.argv[1:]):
         print classify(seq_features, scaler, classifier,
                    constants.feature_indices[parsed_args.classifier.lower()], parsed_args.probas)
     else:
-        # svm - no feature selection
+        # svc - no feature selection
         print classify(seq_features, scaler, classifier, probas=parsed_args.probas)
 
 

@@ -20,5 +20,5 @@ feature_indices = {
                               json.load(open(os.path.join(DIR_PATH, 'files', CONFIG['features_file'])))['knn'])
 }
 classifier_paths = {classifier_name:os.path.join(DIR_PATH, 'files', CONFIG['classifier_files'][classifier_name]) for
-classifier_name in ('qda', 'knn', 'svm')}
+classifier_name in ('qda', 'knn', 'svc')}
 scaler_path = os.path.join(DIR_PATH, 'files', CONFIG['scaler_file'])
