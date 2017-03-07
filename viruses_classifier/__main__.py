@@ -30,6 +30,14 @@ def main(args=sys.argv[1:]):
     print classify(seq_features, scaler, classifier,
                    constants.feature_indices[parsed_args.classifier.lower()], parsed_args.probas)
 
+    # TODO create classifier - svc without feature selection
+    # TODO check the classifier's performance
+    # TODO design and implement user interface to run the classifier
+    # TODO test the new user interface
+    # TODO check the old features
+    # TODO modify setup scripts
+    # TODO modify readme
+
 
 if __name__ == '__main__':
     main()
