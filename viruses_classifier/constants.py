@@ -14,7 +14,7 @@ CONFIG = json.load(open(os.path.join(DIR_PATH, 'conf.json')))
 ACID_TO_NUMBER = {'dna':1.0, 'rna':0.0}
 NUM_TO_CLASS = {
     'all_viruses' : {0:'Eucaryota-infecting', 1:'phage'},
-    'ssRNA+' : {0:'sth0', 1:'sth1'}
+    'ssRNA+' : {0:'Deuterostomia-infecting', 1:'other virus'}
 }
 feature_indices = {
     classifier_name:_get_feature_indices(pickle.load(open(os.path.join(DIR_PATH, 'files', CONFIG['all_features_file']))),
