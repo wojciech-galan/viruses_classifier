@@ -3,7 +3,8 @@
   {
     "qda":"qda.pkl",
     "knn":"knn.pkl",
-    "svc":"svc.pkl"
+    "svc":"svc.pkl",
+    "ssRNA+":"svc_ssRNAplus.pkl"
   },
   "scaler_file":"scaler.pkl",
   "features_file":"features.json",

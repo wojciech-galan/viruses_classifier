@@ -4,6 +4,7 @@
 import sys
 import os
 import argparse
+import numpy as np
 from sklearn.externals import joblib
 
 import constants
@@ -14,28 +15,40 @@ from libs import read_sequence
 def main(args=sys.argv[1:]):
     parser = argparse.ArgumentParser(description='') #todo dodać opis
     parser.add_argument('sequence', type=str, help='sequence in plaintekst')
-    parser.add_argument('nucleic_acid', type=str, help='nucleic acid: either DNA or RNA')
-    parser.add_argument('classifier', type=str, help='classifier: SVC, kNN or QDA')
+    parser.add_argument('--nucleic_acid', type=str, help='nucleic acid: either DNA or RNA',
+                        choices=['DNA', 'RNA', 'dna', 'rna'])
+    parser.add_argument('--classifier', type=str, help='classifier: SVC, kNN or QDA',
+                        choices=['SVC','kNN', 'QDA', 'svc', 'knn', 'qda'])
+    parser.add_argument('--ssRNAplus', '-s', dest='ssRNAplus', action='store_true')
     parser.add_argument('--probas', '-p', dest='probas', action='store_true')
     parsed_args = parser.parse_args(args)
-    if not (parsed_args.classifier.lower() == 'svc' or parsed_args.classifier.lower() == 'knn' or
-                    parsed_args.classifier.lower() == 'qda'):
-        raise ValueError("Classifier should be SVC, kNN or QDA")
-    if not (parsed_args.nucleic_acid.lower() == 'dna' or parsed_args.nucleic_acid.lower() == 'rna'):
-        raise ValueError("Nucleic acid tye should be either DNA or RNA")
+    if parsed_args.ssRNAplus:
+        classifier_name = analysis_type = 'ssRNA+'
+        nucleic_acid = 'rna'
+        feature_indices = np.linspace(0, 101, num=102, dtype=int)
+    else:
+        classifier_name = parsed_args.classifier.lower()
+        nucleic_acid = parsed_args.nucleic_acid.lower()
+        feature_indices = constants.feature_indices[parsed_args.classifier.lower()]
+        analysis_type = 'all_viruses'
+    # if not (parsed_args.classifier.lower() == 'svc' or parsed_args.classifier.lower() == 'knn' or
+    #                 parsed_args.classifier.lower() == 'qda'):
+    #     raise ValueError("Classifier should be SVC, kNN or QDA")
+    # if not (parsed_args.nucleic_acid.lower() == 'dna' or parsed_args.nucleic_acid.lower() == 'rna'):
+    #     raise ValueError("Nucleic acid tye should be either DNA or RNA")
     sequence = read_sequence.read_raw(parsed_args.sequence)
     scaler = joblib.load(constants.scaler_path)
-    classifier = joblib.load(constants.classifier_paths[parsed_args.classifier.lower()])
-    seq_features = seq_to_features(sequence, parsed_args.nucleic_acid.lower())
+    classifier = joblib.load(constants.classifier_paths[classifier_name])
+    seq_features = seq_to_features(sequence, nucleic_acid)
     print classify(seq_features, scaler, classifier,
-                   constants.feature_indices[parsed_args.classifier.lower()], parsed_args.probas)
+                   feature_indices, parsed_args.probas, analysis_type)
 
     # TODO check the classifier's performance
-    # TODO design and implement user interface to run the classifier
     # TODO test the new user interface
     # TODO check the old features
     # TODO modify setup scripts
     # TODO modify readme
+    # TODO change version
 
 
 if __name__ == '__main__':

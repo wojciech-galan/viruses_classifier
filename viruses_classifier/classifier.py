@@ -40,7 +40,7 @@ def seq_to_features(seq, nuc_acid):
     return vals
 
 
-def classify(sequence_features, scaller, classifier, feature_indices=None, probas=False):
+def classify(sequence_features, scaller, classifier, feature_indices=None, probas=False, analysis_type='all_viruses'):
     """
     Classify viral sequence
     :param sequence_features: (list of numbers) - features of the sequence to be classified
@@ -57,5 +57,5 @@ def classify(sequence_features, scaller, classifier, feature_indices=None, proba
         vals = scaller.transform(np.array(sequence_features).reshape(1, -1))
     if probas:
         clf_val = classifier.predict_proba(vals)[0]
-        return probas_to_dict(clf_val, constants.NUM_TO_CLASS)
-    return constants.NUM_TO_CLASS[classifier.predict(vals)[0]]
+        return probas_to_dict(clf_val, constants.NUM_TO_CLASS[analysis_type])
+    return constants.NUM_TO_CLASS[analysis_type][classifier.predict(vals)[0]]
