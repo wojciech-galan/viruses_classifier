@@ -45,7 +45,6 @@ def main(args=sys.argv[1:]):
 
     # TODO check the classifier's performance
     # TODO modify setup scripts
-    # TODO modify readme
     # TODO change version
     # TODO merge with master
 
