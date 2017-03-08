@@ -23,4 +23,5 @@ feature_indices = {
 }
 classifier_paths = {classifier_name:os.path.join(DIR_PATH, 'files', CONFIG['classifier_files'][classifier_name]) for
 classifier_name in ('qda', 'knn', 'svc', 'ssRNA+')}
-scaler_path = os.path.join(DIR_PATH, 'files', CONFIG['scaler_file'])
+scaler_path = {analysis:os.path.join(DIR_PATH, 'files', CONFIG['scaler_files'][analysis])
+               for analysis in ("all_viruses", "ssRNA+")}

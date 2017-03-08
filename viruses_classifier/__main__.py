@@ -25,7 +25,7 @@ def main(args=sys.argv[1:]):
     if parsed_args.ssRNAplus:
         classifier_name = analysis_type = 'ssRNA+'
         nucleic_acid = 'rna'
-        feature_indices = np.linspace(0, 101, num=102, dtype=int)
+        feature_indices = np.linspace(0, 101, num=102, dtype=int) # no feature selection
     else:
         classifier_name = parsed_args.classifier.lower()
         nucleic_acid = parsed_args.nucleic_acid.lower()
@@ -37,18 +37,20 @@ def main(args=sys.argv[1:]):
     # if not (parsed_args.nucleic_acid.lower() == 'dna' or parsed_args.nucleic_acid.lower() == 'rna'):
     #     raise ValueError("Nucleic acid tye should be either DNA or RNA")
     sequence = read_sequence.read_raw(parsed_args.sequence)
-    scaler = joblib.load(constants.scaler_path)
+    scaler = joblib.load(constants.scaler_path[analysis_type])
     classifier = joblib.load(constants.classifier_paths[classifier_name])
     seq_features = seq_to_features(sequence, nucleic_acid)
     print classify(seq_features, scaler, classifier,
                    feature_indices, parsed_args.probas, analysis_type)
 
     # TODO check the classifier's performance
-    # TODO test the new user interface
-    # TODO check the old features
     # TODO modify setup scripts
     # TODO modify readme
     # TODO change version
+    # TODO merge with master
+
+    # TODO not only red_raw sequence
+    # TODO also classifiers trained on all available data
 
 
 if __name__ == '__main__':

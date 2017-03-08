@@ -6,7 +6,11 @@
     "svc":"svc.pkl",
     "ssRNA+":"svc_ssRNAplus.pkl"
   },
-  "scaler_file":"scaler.pkl",
+  "scaler_files":
+  {
+    "all_viruses":"scaler.pkl",
+    "ssRNA+":"scaler_ssRNAplus.pkl"
+  },
   "features_file":"features.json",
   "all_features_file":"features.dump"
 }
