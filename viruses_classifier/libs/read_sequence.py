@@ -3,32 +3,59 @@
 
 """Routines for reading nucleotide sequences in different formats"""
 
+import re
+
+RE_NA_IUPAC = '[ACGTRYSWKMBDHVN]*'
+
 
 class ReadSequenceException(IOError):
 
     def __init__(self, message="Make sure your file contains either \
-    raw or FASTA-formatted sequence"):
+raw or FASTA-formatted sequence"):
         super(ReadSequenceException, self).__init__(message)
 
-
-def read_raw(path):
+def read_sequence(path):
     """
-    Reads file containing raw sequence
+    Reads a sequence file
     :param path: path to the file
     :return: sequence string
     """
-    return ''.join(open(path).read().split()).upper()
+    txt = open(path).read().strip()
+    if txt.startswith('>'):
+        return read_fasta(txt)
+    return read_raw(txt)
+
+def is_nucleotide_sequence(txt):
+    """
+    Checks whether txt is nucleotide sequence
+    :param txt: should be raw string in uppercase without whitespases
+    :return:
+    """
+    found = re.search(RE_NA_IUPAC, txt)
+    return found.start()==0 and found.end()==len(txt)
+
+def read_raw(txt):
+    """
+    Reads file containing raw sequence
+    :param txt: content of the sequence file
+    :return: sequence string
+    """
+    txt_without_whitespaces = ''.join(txt.split()).upper()
+    if not is_nucleotide_sequence(txt_without_whitespaces):
+        raise ReadSequenceException("Is it really single nucleotide sequence in one of the supported formats?")
+    return txt_without_whitespaces
 
 
-def read_fasta(path):
+def read_fasta(txt):
     """
     Reads file cotaining FASTA-formatted sequence
-    :param path: path to the file
+    :param txt: content of the sequence file
     :return: raw sequence string
     """
     seqs = {}
-    text = open(path).read().strip()
-    if text.count('>') != 1 or text[0] != '>':
+    if txt.count('>') != 1 or txt[0] != '>':
         raise ReadSequenceException()
-    seq = text.split('\n',1)[1]
-    return ''.join(seq.split()).upper()
+    txt_without_whitespaces = ''.join(txt.split()[1:]).upper()
+    if not is_nucleotide_sequence(txt_without_whitespaces):
+        raise ReadSequenceException("Is it really single nucleotide sequence in one of the supported formats?")
+    return txt_without_whitespaces

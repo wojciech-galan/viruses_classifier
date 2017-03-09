@@ -36,7 +36,7 @@ def main(args=sys.argv[1:]):
     #     raise ValueError("Classifier should be SVC, kNN or QDA")
     # if not (parsed_args.nucleic_acid.lower() == 'dna' or parsed_args.nucleic_acid.lower() == 'rna'):
     #     raise ValueError("Nucleic acid tye should be either DNA or RNA")
-    sequence = read_sequence.read_raw(parsed_args.sequence)
+    sequence = read_sequence.read_sequence(parsed_args.sequence)
     scaler = joblib.load(constants.scaler_path[analysis_type])
     classifier = joblib.load(constants.classifier_paths[classifier_name])
     seq_features = seq_to_features(sequence, nucleic_acid)
