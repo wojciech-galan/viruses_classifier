@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="viruses_classifier",
-    version='0.1.0',
+    version='1.0.0',
     description='Predict host of a virus based on its (possibly complete) genomic sequence',
     url='https://github.com/wojciech-galan/viruses_classifier',
     author='Wojciech Gałan',

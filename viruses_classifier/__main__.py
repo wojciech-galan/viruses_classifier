@@ -43,9 +43,6 @@ def main(args=sys.argv[1:]):
     print classify(seq_features, scaler, classifier,
                    feature_indices, parsed_args.probas, analysis_type)
 
-    # TODO check the classifier's performance
-    # TODO modify setup scripts
-    # TODO change version
     # TODO merge with master
 
     # TODO not only red_raw sequence
