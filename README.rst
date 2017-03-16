@@ -40,7 +40,7 @@ Usage
 
 all_viruses mode - you have to provide path to the sequence file, nucleic acid type and classifier name:
 
-    viruses_classifier raw_or_FASTA-formatted_sequence_file dna svc
+    viruses_classifier raw_or_FASTA-formatted_sequence_file --nucleic_acid rna --classifier qda --probas
 
 ssRNA+ - you only have to provide path to the sequence file
 
