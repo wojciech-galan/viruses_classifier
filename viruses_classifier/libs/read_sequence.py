@@ -4,6 +4,7 @@
 """Routines for reading nucleotide sequences in different formats"""
 
 import re
+import os
 
 RE_NA_IUPAC = '[ACGTRYSWKMBDHVN]*'
 
@@ -55,7 +56,7 @@ def read_fasta(txt):
     seqs = {}
     if txt.count('>') != 1 or txt[0] != '>':
         raise ReadSequenceException()
-    txt_without_whitespaces = ''.join(txt.split()[1:]).upper()
+    txt_without_whitespaces = ''.join(txt.split(os.linesep)[1:]).upper()
     if not is_nucleotide_sequence(txt_without_whitespaces):
         raise ReadSequenceException("Is it really single nucleotide sequence in one of the supported formats?")
     return txt_without_whitespaces
