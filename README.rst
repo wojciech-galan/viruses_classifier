@@ -46,7 +46,7 @@ ssRNA+ - you only have to provide path to the sequence file
 
     viruses_classifier raw_or_FASTA-formatted_sequence_file --ssRNAplus
 
-In both cases you can provide also optional algument --probas for class probabilities
+In both cases you can provide also optional argument --probas for class probabilities
 
 Citation
 --------
