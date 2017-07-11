@@ -2,6 +2,7 @@
 viruses_classifier
 ====
 Predicts host of a virus based on its (possibly complete) genomic sequence. Could be run in two modes:
+
 - all_viruses (default) mode - predicts whether a virus infects Eukaryotes
 - ssRNA+ mode - predicts whether a ssRNA+ virus infects Deuterostomia
 
