@@ -16,6 +16,7 @@ viruses_classifier requires:
 
 - Python = 2.7
 - NumPy >= 1.6.1
+- SciPy >= 0.9
 - scikit-learn >= 0.18
 
 
@@ -47,7 +48,7 @@ ssRNA+ - you only have to provide path to the sequence file
 
     viruses_classifier raw_or_FASTA-formatted_sequence_file --ssRNAplus
 
-In both cases you can provide also optional argument --probas for class probabilities
+In both cases you can provide optional argument --probas for class probabilities. This is a switch, so if you run the command with --probas you will obtain class probabilities and if you don't you will obtain only exact class. In all_viruses mode you can use one of three trained classifiers: SVC, kNN and QDA.
 
 Citation
 --------
