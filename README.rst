@@ -17,7 +17,7 @@ viruses_classifier requires:
 - Python = 2.7
 - NumPy >= 1.6.1
 - SciPy >= 0.9
-- scikit-learn >= 0.18
+- scikit-learn = 0.18.1
 
 
 User installation
