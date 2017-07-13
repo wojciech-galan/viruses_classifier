@@ -26,8 +26,21 @@ User installation
 If you already have a working installation of numpy and scipy,
 the easiest way to install viruses_classifier is using ``pip`` ::
 
-    pip install -U git+https://github.com/wojciech-galan/viruses_classifier.git
+    pip install git+https://github.com/wojciech-galan/viruses_classifier.git
 
+
+General issues
+*************
+kNN classifier may not work on 32-bit python, so stick to the 64-bit one. Also, all of the classifiers were trained with a distinct version of scikit-learn, and may not work for the newer/older ones.
+
+Windows installation issues
+*************
+
+Under windows you may encounter problems with installing libraries for linear algebra required by scipy. The recommended solution is to install Anaconda which has a proper version of scikit-learn (for example Anaconda2-4.4.0). Then, in Anaconda console, run::
+
+    conda install qt
+
+and proceed with the above pip command.
 
 Source code
 -----------
