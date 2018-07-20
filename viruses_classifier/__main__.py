@@ -15,7 +15,7 @@ def validate_classifier_name():pass #TODO
 
 def validate_acid_type(): pass #TODO
 
-def main(args):
+def main(args=sys.argv[1:]):
     parser = argparse.ArgumentParser(description='') #todo dodać opis
     parser.add_argument('sequence', type=str, help='sequence in plaintekst')
     parser.add_argument('--nucleic_acid', type=str, help='nucleic acid: either DNA or RNA',
