@@ -24,7 +24,6 @@ def seq_to_features(seq, nuc_acid):
     :return: list of sequence features(numbers)
     """
     acid_code = constants.ACID_TO_NUMBER[nuc_acid]
-    length = len(seq)
     nuc_frequencies = sequence_processing.nucFrequencies(seq, 2)
     nuc_frequencies_ = {'nuc_frequencies__'+key : value for key, value in
                        nuc_frequencies.iteritems()}
@@ -35,12 +34,12 @@ def seq_to_features(seq, nuc_acid):
     freqs = nuc_frequencies_
     freqs.update(relative_nuc_frequencies_one_strand_)
     freqs.update(relative_trinuc_freqs_one_strand_)
-    vals = [length, acid_code]
+    vals = [acid_code]
     vals.extend([freqs[k] for k in sorted(freqs)])
     return vals
 
 
-def classify(sequence_features, scaller, classifier, feature_indices=None, probas=False, analysis_type='all_viruses'):
+def classify(sequence_features, scaler, classifier, feature_indices=None, probas=False):
     """
     Classify viral sequence
     :param sequence_features: (list of numbers) - features of the sequence to be classified
@@ -51,11 +50,11 @@ def classify(sequence_features, scaller, classifier, feature_indices=None, proba
     :return: class code (for example 0 or 1) or class probabilities
     """
     if feature_indices is not None:
-        vals = scaller.transform(np.array(sequence_features).reshape(1, -1))[:, feature_indices]
+        vals = scaler.transform(np.array(sequence_features).reshape(1, -1))[:, feature_indices]
     else:
         # no feature selection
-        vals = scaller.transform(np.array(sequence_features).reshape(1, -1))
+        vals = scaler.transform(np.array(sequence_features).reshape(1, -1))
     if probas:
         clf_val = classifier.predict_proba(vals)[0]
-        return probas_to_dict(clf_val, constants.NUM_TO_CLASS[analysis_type])
-    return constants.NUM_TO_CLASS[analysis_type][classifier.predict(vals)[0]]
+        return probas_to_dict(clf_val, constants.NUM_TO_CLASS)
+    return constants.NUM_TO_CLASS[classifier.predict(vals)[0]]

@@ -1,16 +1,12 @@
 {
   "classifier_files":
   {
-    "qda":"qda.pkl",
-    "knn":"knn.pkl",
-    "svc":"svc.pkl",
-    "ssRNA+":"svc_ssRNAplus.pkl"
+    "qda":"classifier_qda.pkl",
+    "knn":"classifier_knn.pkl",
+    "svc":"classifier_svc.pkl",
+    "lr":"classifier_lr.pkl"
   },
-  "scaler_files":
-  {
-    "all_viruses":"scaler.pkl",
-    "ssRNA+":"scaler_ssRNAplus.pkl"
-  },
+  "scaler_file":"scaler.pkl",
   "features_file":"features.json",
   "all_features_file":"features.dump"
 }
