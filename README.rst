@@ -1,10 +1,7 @@
 .. -*- mode: rst -*-
 viruses_classifier
 ====
-Predicts host of a virus based on its (possibly complete) genomic sequence. Could be run in two modes:
-
-- all_viruses (default) mode - predicts whether a virus infects Eukaryotes
-- ssRNA+ mode - predicts whether a ssRNA+ virus infects Deuterostomia
+Predicts host of a virus based on its (possibly complete) genomic sequence
 
 Installation
 ------------
@@ -53,15 +50,13 @@ You can check the latest sources with the command::
 Usage
 -----
 
-all_viruses mode - you have to provide path to the sequence file, nucleic acid type and classifier name:
+You have to provide path to the sequence file, nucleic acid type and classifier name:
 
     viruses_classifier raw_or_FASTA-formatted_sequence_file --nucleic_acid rna --classifier qda --probas
 
-ssRNA+ - you only have to provide path to the sequence file
+    viruses_classifier raw_or_FASTA-formatted_sequence_file --nucleic_acid rna --classifier lr
 
-    viruses_classifier raw_or_FASTA-formatted_sequence_file --ssRNAplus
-
-In both cases you can provide optional argument --probas for class probabilities. This is a switch, so if you run the command with --probas you will obtain class probabilities and if you don't you will obtain only exact class. In all_viruses mode you can use one of three trained classifiers: SVC, kNN and QDA.
+In both cases you can provide optional argument --probas for class probabilities. This is a switch, so if you run the command with --probas you will obtain class probabilities and if you don't you will obtain only exact class. You can use one of four trained classifiers: LR, SVC, kNN and QDA.
 
 Citation
 --------
