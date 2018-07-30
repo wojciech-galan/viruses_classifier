@@ -12,8 +12,8 @@ Dependencies
 viruses_classifier requires:
 
 - Python = 2.7
-- NumPy >= 1.6.1
-- SciPy >= 0.9
+- NumPy >= 1.8.2
+- SciPy >= 0.13.3
 - scikit-learn = 0.19.2
 
 
