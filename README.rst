@@ -49,10 +49,12 @@ You can check the latest sources with the command::
 
 Usage
 -----
+    viruses_classifier -h
 
-You have to provide path to the sequence file, nucleic acid type and classifier name:
 
-    viruses_classifier raw_or_FASTA-formatted_sequence_file --nucleic_acid rna --classifier qda --probas
+You have to provide path to the sequence file, nucleic acid type and classifier name. For example:
+
+    viruses_classifier raw_or_FASTA-formatted_sequence_file --nucleic_acid rna --classifier qda
 
     viruses_classifier raw_or_FASTA-formatted_sequence_file --nucleic_acid rna --classifier lr
 
