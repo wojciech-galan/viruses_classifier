@@ -23,7 +23,7 @@ User installation
 If you already have a working installation of numpy and scipy,
 the easiest way to install viruses_classifier is using ``pip`` ::
 
-    pip install git+https://github.com/wojciech-galan/viruses_classifier.git
+    pip install git+https://github.com/wojciech-galan/viruses_classifier.git --user
 
 
 General issues
