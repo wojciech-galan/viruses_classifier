@@ -64,4 +64,5 @@ In both cases you can provide optional argument --probas for class probabilities
 Citation
 --------
 
-# TODO
+.. image:: https://zenodo.org/badge/70039462.svg
+   :target: https://zenodo.org/badge/latestdoi/70039462
