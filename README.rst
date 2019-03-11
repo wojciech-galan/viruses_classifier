@@ -65,7 +65,7 @@ Citation
 --------
 If you use this software in a scientific publication, we would appreciate citations: 
 
-> Gałan W, Bąk M, Jakubowska M. Host Taxon Predictor - A Tool for Predicting Taxon of the Host of a Newly Discovered Virus. Sci Rep. 2019;9(1):3436. Published 2019 Mar 5. doi:10.1038/s41598-019-39847-2
+    Gałan W, Bąk M, Jakubowska M. Host Taxon Predictor - A Tool for Predicting Taxon of the Host of a Newly Discovered Virus. Sci Rep. 2019;9(1):3436. Published 2019 Mar 5. doi:10.1038/s41598-019-39847-2
 
 If you'd like to reffer to stable version of the software only, you can use DOI below
 
