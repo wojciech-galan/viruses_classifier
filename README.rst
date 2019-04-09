@@ -71,3 +71,8 @@ If you'd like to reffer to stable version of the software only, you can use DOI 
 
 .. image:: https://zenodo.org/badge/70039462.svg
    :target: https://zenodo.org/badge/latestdoi/70039462
+
+Questions/comments?
+-------------------
+
+Contact me via e-mail  wojciech.galan at gmail.com
